@@ -1,5 +1,5 @@
 # foodie_fleet_app
 
-A new Flutter project.
+Flutter project untuk tugas besar mobile innovation laboratory.
 
 # FooodieFleet
