@@ -42,9 +42,12 @@ class CustomAppbar extends StatelessWidget {
                       SizedBox(
                         width: width * 0.65,
                         child: Text(
-                          'Deliver to',
+                          'Perumahan Griya Alifa, Jl.Sukabirus No.4',
                           overflow: TextOverflow.ellipsis,
-                          style: appStyle(11, kGrayLight, FontWeight.normal),
+                          style: appStyle(
+                              11,
+                              const Color.fromARGB(255, 202, 186, 158),
+                              FontWeight.normal),
                         ),
                       ),
                     ],
