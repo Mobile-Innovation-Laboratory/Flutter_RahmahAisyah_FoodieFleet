@@ -35,6 +35,7 @@ dependencies:
   firebase_core: ^2.24.2
   country_picker: ^2.0.23
   get: ^4.7.2
+  flutter_native_splash: ^2.4.4
 
 dev_dependencies:
   flutter_test:
@@ -48,3 +49,11 @@ flutter:
     - assets/anime/
     - assets/icons/
     - assets/foodly/
+
+flutter_native_splash:
+  android: true
+  ios: true
+  web: true
+
+  color: "#30b9b2"
+  image: assets/images/logo.png

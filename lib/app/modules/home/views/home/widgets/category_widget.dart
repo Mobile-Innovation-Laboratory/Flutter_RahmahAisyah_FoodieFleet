@@ -13,7 +13,7 @@ class CategoryWidget extends StatelessWidget {
     this.category,
   });
 
-  var category;
+  dynamic category;
 
   @override
   Widget build(BuildContext context) {
