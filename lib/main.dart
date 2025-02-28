@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -20,7 +21,7 @@ void main() {
             title: 'Foodie Fleet',
             initialRoute: AppPages.initial,
             getPages: AppPages.routes,
-            builder: DevicePreview.appBuilder, // Integrasi DevicePreview
+            builder: DevicePreview.appBuilder,
           );
         },
       ),
