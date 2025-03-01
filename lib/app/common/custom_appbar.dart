@@ -11,17 +11,25 @@ class CustomAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
-      height: 110.h,
+      height: 100.h,
       width: width,
-      color: kOffWhite,
+      decoration: BoxDecoration(
+        color: kOffWhite,
+        boxShadow: [
+          BoxShadow(
+            // ignore: deprecated_member_use
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 5,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
       child: Container(
-        margin: EdgeInsets.only(top: 20.h),
+        margin: EdgeInsets.only(top: 30.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 CircleAvatar(
                   radius: 22.r,
@@ -30,7 +38,7 @@ class CustomAppbar extends StatelessWidget {
                       NetworkImage('https://i.imgur.com/t0LyKKs.jpeg'),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 6.h, left: 8.w),
+                  padding: EdgeInsets.only(left: 10.w),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,6 +58,9 @@ class CustomAppbar extends StatelessWidget {
                               FontWeight.normal),
                         ),
                       ),
+                      Container(
+                        height: 7,
+                      ),
                     ],
                   ),
                 ),
@@ -57,8 +68,7 @@ class CustomAppbar extends StatelessWidget {
             ),
             Text(
               getTimeOfDay(),
-              style: TextStyle(
-                  fontSize: 30, color: const Color.fromARGB(255, 243, 193, 29)),
+              style: TextStyle(fontSize: 30, color: kSecondary),
             ),
           ],
         ),

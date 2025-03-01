@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "201743484199",
+    "project_id": "foodiefleet-75b65",
+    "storage_bucket": "foodiefleet-75b65.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201743484199:android:189861144ad3e85d2e1502",
+        "android_client_info": {
+          "package_name": "com.example.foodie_fleet_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuSyXBBHcoEECB3wLzdk6MuWc8I_Eek6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
