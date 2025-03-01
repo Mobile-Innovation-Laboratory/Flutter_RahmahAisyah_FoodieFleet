@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:foodie_fleet_app/app/routes/app_pages.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -10,11 +11,18 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final box = GetStorage();
+
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 4), () {
-      Get.offAllNamed(Routes.home);
+      bool isLoggedIn = box.read("isLoggedIn") ?? false;
+      if (isLoggedIn) {
+        Get.offAllNamed(Routes.home);
+      } else {
+        Get.offAllNamed(Routes.login);
+      }
     });
   }
 
