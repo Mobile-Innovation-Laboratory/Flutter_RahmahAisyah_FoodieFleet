@@ -5,6 +5,7 @@ import 'package:foodie_fleet_app/app/modules/home/views/cart/cart_page.dart';
 import 'package:foodie_fleet_app/app/modules/home/views/home/home_page.dart';
 import 'package:foodie_fleet_app/app/modules/home/views/profile/profile_page.dart';
 import 'package:foodie_fleet_app/app/modules/home/views/search/search_page.dart';
+import 'package:foodie_fleet_app/app/modules/profile/views/profile_view.dart';
 import 'package:get/get.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
@@ -15,7 +16,7 @@ class MainScreen extends StatelessWidget {
     HomePage(),
     SearchPage(),
     CartPage(),
-    ProfilePage(),
+    ProfileView(),
   ];
 
   @override
