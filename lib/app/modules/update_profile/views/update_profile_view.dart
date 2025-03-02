@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:foodie_fleet_app/app/common/app_style.dart';
+import 'package:foodie_fleet_app/app/common/reusable_text.dart';
+import 'package:foodie_fleet_app/app/constants/constants.dart';
 
 import 'package:get/get.dart';
 
@@ -11,13 +14,17 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
   Widget build(BuildContext context) {
     final Map<String, dynamic> user = Get.arguments;
 
-    final TextEditingController addressController = TextEditingController();
+    controller.addressC.text = user["address"] ?? "";
     controller.nameC.text = user["name"];
     controller.emailC.text = user["email"];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('UPDATE PROFILE'),
-        centerTitle: true,
+        elevation: 0,
+        backgroundColor: kOffWhite,
+        title: ReusableText(
+            text: "Update Profile ",
+            style: appStyle(22, kDark, FontWeight.w500)),
       ),
       body: ListView(
         padding: EdgeInsets.all(20),
@@ -42,7 +49,7 @@ class UpdateProfileView extends GetView<UpdateProfileController> {
           ),
           SizedBox(height: 20),
           TextField(
-            controller: addressController,
+            controller: controller.addressC,
             decoration: InputDecoration(
               labelText: "Enter Address",
               border: OutlineInputBorder(),
