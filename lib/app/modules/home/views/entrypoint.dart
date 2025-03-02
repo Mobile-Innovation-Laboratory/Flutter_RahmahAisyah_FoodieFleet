@@ -22,7 +22,6 @@ class MainScreen extends StatelessWidget {
 
     return Obx(
       () {
-        print("MainScreen: isLoggedIn = ${controller.isLoggedIn.value}");
         return Scaffold(
           body: Stack(
             children: [

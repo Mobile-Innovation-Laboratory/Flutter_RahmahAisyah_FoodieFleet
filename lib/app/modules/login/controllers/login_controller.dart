@@ -37,13 +37,10 @@ class LoginController extends GetxController {
             box.write("userEmail", emailC.text);
             box.write("userUID", uid);
 
-            print(
-                "Login berhasil, isLoggedIn di Storage: ${box.read("isLoggedIn")}");
 
-            Future.delayed(Duration(milliseconds: 300), () {
+            Future.delayed(Duration(milliseconds: 100), () {
               final tabController = Get.find<TabIndexController>();
               tabController.setTabIndex = 3;
-              print("Set tabIndex ke: ${tabController.tabIndex}");
 
               Get.offAllNamed(Routes.home);
             });
@@ -56,9 +53,6 @@ class LoginController extends GetxController {
           }
         }
       } on FirebaseAuthException catch (e) {
-        print("FirebaseAuthException: ${e.code}");
-        print("Kode Error Firebase: '${e.code}'");
-        print("Pesan Error Firebase: '${e.message}'");
 
         String errorMessage = "Terjadi kesalahan. Silakan coba lagi.";
 
@@ -84,8 +78,6 @@ class LoginController extends GetxController {
           duration: Duration(seconds: 3),
         );
       } catch (e) {
-        print("Error login: $e");
-
         Get.snackbar(
           "Error",
           "Terjadi kesalahan saat login: $e",

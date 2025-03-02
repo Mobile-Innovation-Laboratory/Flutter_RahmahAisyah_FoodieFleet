@@ -14,7 +14,6 @@ class TabIndexController extends GetxController {
   void onInit() {
     super.onInit();
     isLoggedIn.value = box.read("isLoggedIn") ?? false;
-    print("TabIndexController onInit: isLoggedIn = ${isLoggedIn.value}");
     update(); // Tambahkan ini untuk memperbarui UI
   }
 }
