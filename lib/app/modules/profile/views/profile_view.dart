@@ -94,14 +94,14 @@ class ProfileView extends GetView<ProfileController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(Icons.location_on,
-                                  color: Colors.grey[700], size: 20),
+                                  color: Colors.grey[700], size: 15),
                               SizedBox(
                                   width:
                                       5), // Memberi jarak antara ikon dan teks
                               Text(
                                 user["address"],
                                 style: TextStyle(
-                                    fontSize: 16, color: Colors.grey[700]),
+                                    fontSize: 13, color: Colors.grey[700]),
                               ),
                             ],
                           ),
