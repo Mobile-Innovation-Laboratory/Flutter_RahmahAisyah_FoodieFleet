@@ -96,7 +96,7 @@ class LoginView extends GetView<LoginController> {
                     Get.toNamed(Routes.register); // Navigasi ke halaman login
                   },
                   child: Text(
-                    "Have an account? Sign in here",
+                    "Don't have an account? Sign up here",
                     style:
                         appStyle(13, const Color(0xFF007BFF), FontWeight.w500),
                   ),

@@ -37,10 +37,11 @@ class LoginController extends GetxController {
             box.write("userEmail", emailC.text);
             box.write("userUID", uid);
 
-
             Future.delayed(Duration(milliseconds: 100), () {
               final tabController = Get.find<TabIndexController>();
               tabController.setTabIndex = 3;
+              tabController.checkLoginStatus();
+              tabController.update();
 
               Get.offAllNamed(Routes.home);
             });
@@ -53,7 +54,6 @@ class LoginController extends GetxController {
           }
         }
       } on FirebaseAuthException catch (e) {
-
         String errorMessage = "Terjadi kesalahan. Silakan coba lagi.";
 
         if (e.code == 'user-not-found') {
