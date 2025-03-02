@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodie_fleet_app/app/common/app_style.dart';
+import 'package:foodie_fleet_app/app/common/reusable_text.dart';
+import 'package:foodie_fleet_app/app/constants/constants.dart';
+import 'package:foodie_fleet_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
@@ -11,8 +15,13 @@ class LoginView extends GetView<LoginController> {
     final LoginController controller = Get.put(LoginController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LoginView'),
-        centerTitle: true,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        backgroundColor: kOffWhite,
+        title: Center(
+          child: ReusableText(
+              text: "Login ", style: appStyle(22, kDark, FontWeight.w500)),
+        ),
       ),
       body: ListView(
         padding: EdgeInsets.all(20),
@@ -38,11 +47,27 @@ class LoginView extends GetView<LoginController> {
           SizedBox(
             height: 30,
           ),
-          ElevatedButton(
-            onPressed: () {
-              controller.login();
-            },
-            child: Text("Login"),
+          Obx(
+            () => ElevatedButton(
+              onPressed: () async {
+                if (controller.isLoading.isFalse) {
+                  await controller.login();
+                }
+              },
+              child:
+                  Text(controller.isLoading.isFalse ? "Login" : "LOADING..."),
+            ),
+          ),
+          Center(
+            child: TextButton(
+              onPressed: () {
+                Get.toNamed(Routes.register); // Navigasi ke halaman login
+              },
+              child: Text(
+                "Don't have an account? Sign up here",
+                style: appStyle(13, const Color(0xFF007BFF), FontWeight.w500),
+              ),
+            ),
           ),
         ],
       ),

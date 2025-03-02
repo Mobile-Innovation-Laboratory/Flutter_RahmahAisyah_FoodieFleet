@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:foodie_fleet_app/app/common/app_style.dart';
+import 'package:foodie_fleet_app/app/common/reusable_text.dart';
+import 'package:foodie_fleet_app/app/constants/constants.dart';
 import 'package:foodie_fleet_app/app/routes/app_pages.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -11,20 +12,28 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     final ProfileController controller = Get.put(ProfileController());
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ProfileView'),
-        centerTitle: true,
+        elevation: 0,
+        backgroundColor: kOffWhite,
+        title: Center(
+          child: ReusableText(
+              text: "Profile ", style: appStyle(22, kDark, FontWeight.w500)),
+        ),
       ),
       body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         stream: controller.streamUser(),
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
-            Center(
+            return Center(
               child: CircularProgressIndicator(),
             );
           }
+
           Map<String, dynamic> user = snap.data!.data()!;
+          String defaultImage =
+              "https://ui-avatars.com/api/?name=${user['name']}";
           return ListView(
             padding: EdgeInsets.all(8),
             children: [
@@ -36,39 +45,40 @@ class ProfileView extends GetView<ProfileController> {
                       width: 100,
                       height: 100,
                       child: Image.network(
-                        "https://ui-avatars.com/api/?name=${user['name']}",
+                        user["profile"] != null
+                            ? user["profile"] != ""
+                                ? user["profile"]
+                                : defaultImage
+                            : defaultImage,
                         fit: BoxFit.cover,
                       ),
                     ),
                   ),
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: 10),
               Text(
-                '${user['name'].toUpperCase()}',
+                '${user['name']}',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25),
               ),
-              SizedBox(
-                height: 5,
-              ),
+              SizedBox(height: 5),
               Text(
                 '${user['email']}',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 15),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              Text(user["address"] != null &&
+                      user["address"].toString().isNotEmpty
+                  ? user["address"]
+                  : ""),
+              SizedBox(height: 30),
               ListTile(
-                onTap: () => Get.toNamed(Routes.UPDATE_PROFILE),
+                onTap: () => Get.toNamed(Routes.updateProfile, arguments: user),
                 leading: Icon(Icons.person),
                 title: Text('Update Profile'),
               ),
               ListTile(
-                onTap: () => Get.toNamed(Routes.UPDATE_PASSWORD),
                 leading: Icon(Icons.key_sharp),
                 title: Text('Update Password'),
               ),
@@ -76,6 +86,24 @@ class ProfileView extends GetView<ProfileController> {
                 onTap: () => controller.logout(),
                 leading: Icon(Icons.logout),
                 title: Text('Logout'),
+              ),
+
+              ListTile(
+                onTap: () {
+                  Get.defaultDialog(
+                    title: "Delete Account",
+                    middleText: "Are you sure you want to delete your account?",
+                    textConfirm: "Yes",
+                    textCancel: "No",
+                    confirmTextColor: Colors.white,
+                    onConfirm: () => controller.deleteUser(),
+                  );
+                },
+                leading: Icon(Icons.delete, color: Colors.red),
+                title: Text(
+                  'Delete Account',
+                  style: TextStyle(color: Colors.red),
+                ),
               ),
             ],
           );
