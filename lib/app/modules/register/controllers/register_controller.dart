@@ -16,6 +16,17 @@ class RegisterController extends GetxController {
     if (nameC.text.isNotEmpty &&
         emailC.text.isNotEmpty &&
         passwordC.text.isNotEmpty) {
+      if (!GetUtils.isEmail(emailC.text)) {
+        Get.snackbar(
+          'Error',
+          'Invalid email format. Please enter a valid email.',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          icon: const Icon(Icons.error, color: Colors.white),
+        );
+        return;
+      }
       try {
         UserCredential userCredential =
             await auth.createUserWithEmailAndPassword(

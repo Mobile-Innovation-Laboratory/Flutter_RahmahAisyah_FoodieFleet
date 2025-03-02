@@ -31,7 +31,9 @@ class MainScreen extends StatelessWidget {
                   HomePage(),
                   SearchPage(),
                   CartPage(),
-                  controller.isLoggedIn.value ? ProfileView() : ProfilePage(),
+                  controller.isLoggedIn.value
+                      ? ProfileView(key: ValueKey(controller.isLoggedIn.value))
+                      : ProfilePage(),
                 ],
               ),
               Align(
