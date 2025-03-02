@@ -68,10 +68,14 @@ class ProfileView extends GetView<ProfileController> {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 15),
               ),
-              Text(user["address"] != null &&
-                      user["address"].toString().isNotEmpty
-                  ? user["address"]
-                  : ""),
+              SizedBox(height: 5),
+              Text(
+                user["address"]?.isNotEmpty == true
+                    ? "Address: ${user["address"]}"
+                    : "",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15),
+              ),
               SizedBox(height: 30),
               ListTile(
                 onTap: () => Get.toNamed(Routes.updateProfile, arguments: user),
@@ -87,7 +91,6 @@ class ProfileView extends GetView<ProfileController> {
                 leading: Icon(Icons.logout),
                 title: Text('Logout'),
               ),
-
               ListTile(
                 onTap: () {
                   Get.defaultDialog(

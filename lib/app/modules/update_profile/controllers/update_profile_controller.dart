@@ -20,8 +20,7 @@ class UpdateProfileController extends GetxController {
   XFile? image;
 
   Future<void> updateProfile(String uid) async {
-    if (nameC.text.isNotEmpty &&
-        emailC.text.isNotEmpty) {
+    if (nameC.text.isNotEmpty && emailC.text.isNotEmpty) {
       isLoading.value = true;
       try {
         Map<String, dynamic> data = {
@@ -35,8 +34,16 @@ class UpdateProfileController extends GetxController {
 
         await firestore.collection("user").doc(uid).update({
           "name": nameC.text,
+          "address": addressC.text,
         });
-        Get.snackbar("Berhasil", "Berhasil update profile.");
+        Get.snackbar(
+          "Berhasil",
+          "Berhasil update profile.",
+          backgroundColor: Colors.green, 
+          colorText: Colors.white, 
+          snackPosition:
+              SnackPosition.TOP, 
+        );
       } catch (e) {
         Get.snackbar("Terjadi Kesalahan", "Tidak dapat update profile.");
       } finally {
