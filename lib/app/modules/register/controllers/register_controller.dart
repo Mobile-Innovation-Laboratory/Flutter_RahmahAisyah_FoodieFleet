@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodie_fleet_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -31,16 +32,27 @@ class RegisterController extends GetxController {
             "uid": uid,
             "createdAt": DateTime.now().toIso8601String(),
             "password": passwordC.text,
-          });
+            "address": "",
+          }, SetOptions(merge: true));
 
           await userCredential.user!.sendEmailVerification();
+
+          Get.snackbar(
+            "Success",
+            "Account created! Please verify your email.",
+            snackPosition: SnackPosition.TOP,
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+            icon: const Icon(Icons.check_circle, color: Colors.white),
+          );
+          Get.offAllNamed(Routes.login);
         }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           Get.snackbar(
             'Error',
             'The password provided is too weak.',
-            snackPosition: SnackPosition.BOTTOM,
+            snackPosition: SnackPosition.TOP,
             backgroundColor: Colors.red,
             colorText: Colors.white,
             icon: const Icon(Icons.error, color: Colors.white),
@@ -49,7 +61,7 @@ class RegisterController extends GetxController {
           Get.snackbar(
             'Error',
             'The account already exists for that email.',
-            snackPosition: SnackPosition.BOTTOM,
+            snackPosition: SnackPosition.TOP,
             backgroundColor: Colors.red,
             colorText: Colors.white,
             icon: const Icon(Icons.error, color: Colors.white),
@@ -59,7 +71,7 @@ class RegisterController extends GetxController {
         Get.snackbar(
           'Error',
           'Cannot add account',
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.red,
           colorText: Colors.white,
           icon: const Icon(Icons.error, color: Colors.white),
@@ -69,7 +81,7 @@ class RegisterController extends GetxController {
       Get.snackbar(
         "Error",
         "Please fill in all fields",
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
         backgroundColor: Colors.red,
         colorText: Colors.white,
         icon: const Icon(Icons.error, color: Colors.white),

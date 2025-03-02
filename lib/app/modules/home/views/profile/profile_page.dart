@@ -23,7 +23,7 @@ class ProfilePage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Get.toNamed(Routes.login);
+            Get.toNamed(Routes.register);
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: kPrimary,

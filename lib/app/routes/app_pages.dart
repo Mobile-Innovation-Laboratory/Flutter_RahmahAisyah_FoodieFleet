@@ -9,8 +9,6 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
-import '../modules/update_password/bindings/update_password_binding.dart';
-import '../modules/update_password/views/update_password_view.dart';
 import '../modules/update_profile/bindings/update_profile_binding.dart';
 import '../modules/update_profile/views/update_profile_view.dart';
 
@@ -47,14 +45,9 @@ class AppPages {
       binding: ProfileBinding(),
     ),
     GetPage(
-      name: _Paths.UPDATE_PROFILE,
-      page: () => const UpdateProfileView(),
+      name: _Paths.updateProfile,
+      page: () =>  const UpdateProfileView(),
       binding: UpdateProfileBinding(),
-    ),
-    GetPage(
-      name: _Paths.UPDATE_PASSWORD,
-      page: () => const UpdatePasswordView(),
-      binding: UpdatePasswordBinding(),
     ),
   ];
 }
